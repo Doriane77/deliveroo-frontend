@@ -1,0 +1,32 @@
+.logoIMG {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  /* background-color: lightsalmon; */
+  padding-top: 5px;
+  width: 75%;
+  margin: auto;
+}
+.logoIMG > img {
+  width: 200px;
+  height: 100%;
+  /* background-color: maroon; */
+}
+.Header {
+  border-bottom: rgb(221, 218, 218) 1px solid;
+  padding-bottom: 10px;
+  background-color: white;
+}
+@media all and (max-width: 880px) {
+  .Header {
+    border-bottom: none;
+  }
+  .logoIMG {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    /* background-color: lightsalmon; */
+    width: 95%;
+    margin: auto;
+  }
+}
