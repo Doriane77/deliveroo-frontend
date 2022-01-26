@@ -2,22 +2,50 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import star from "./etoile.png";
 
-function Section({ data, setdata }) {
+function Section({ data, selectMenu, setSelectMenu, counter, setCounter }) {
+  // console.log("SelectMenu : ", selectMenu);
+  function addProduct(list) {
+    const newtab = [...selectMenu];
+
+    let index = newtab.findIndex((e) => e.id === list.id);
+    console.log(index);
+    if (selectMenu.lenght === 0 || index === -1) {
+      newtab.push({
+        title: list.title,
+        quantity: 1,
+        price: list.price,
+        id: list.id,
+      });
+      setCounter(counter + 1);
+      console.log("j'ai pas trouver");
+    } else {
+      newtab[index].quantity = newtab[index].quantity + 1;
+      console.log("j'ai trouver");
+    }
+
+    setSelectMenu(newtab);
+  }
   return (
     <div className="Section">
       <div className="categories">
-        {data.categories.map((elem) => {
+        {data.categories.map((elem, index) => {
           if (elem.meals.length === 0) {
           } else {
             return (
-              <div className="box-categories">
+              <div key={index} className="box-categories">
                 <div className={elem.meals === false ? "" : "name-categories"}>
                   <h2>{elem.name}</h2>
                 </div>
                 <div className="box-menu">
                   {elem.meals.map((list) => {
                     return (
-                      <div className="menu">
+                      <div
+                        key={list.id}
+                        className="menu"
+                        onClick={() => {
+                          addProduct(list, index);
+                        }}
+                      >
                         <div className="col1">
                           <h3>{list.title}</h3>
                           <div
@@ -44,7 +72,7 @@ function Section({ data, setdata }) {
                         </div>
                         <div className="col2">
                           <div className={list.picture ? "imgMenu" : "none"}>
-                            <img src={list.picture} alt="picture of the dish" />
+                            <img src={list.picture} alt={list.title} />
                           </div>
                         </div>
                       </div>

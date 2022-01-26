@@ -5,26 +5,39 @@ import Header from "./Components/Header/Header";
 import Loading from "./Components/Loading/Loading";
 import Section from "./Components/Section/Section";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faStar, faKey } from "@fortawesome/free-solid-svg-icons";
-library.add(faStar, faKey);
+import { faStar, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import Basket from "./Components/Basket/Basket";
+library.add(faStar, faPlus, faMinus);
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setdata] = useState({});
+  const [counter, setCounter] = useState(0);
+  const [selectMenu, setSelectMenu] = useState([
+    // {
+    //   title: "Pate à la Carbonara",
+    //   quantity: 1,
+    //   price: 10,
+    // },
+    // {
+    //   title: "Lasagne au Saumon",
+    //   quantity: 1,
+    //   price: 13,
+    // },
+  ]);
 
   const fetchData = async () => {
     const response = await axios.get("http://localhost:3200/");
-    console.log(response.data);
     setdata(response.data);
     setIsLoading(false);
   };
   useEffect(() => {
     const showSomething = () => {
-      console.log("Ce message a été affiché après 3 secondes");
+      // console.log("Ce message a été affiché après 3 secondes");
       fetchData();
     };
 
-    setTimeout(showSomething, 4000);
+    setTimeout(showSomething, 1000);
   }, []);
 
   // useEffect(() => {
@@ -37,6 +50,19 @@ function App() {
   //   fetchData();
   //   setIsLoading(false);
   // }, []);
+
+  let subTotal = 0;
+  selectMenu.forEach((meal) => {
+    subTotal += Number(meal.price) * meal.quantity;
+  });
+  let livraison = 2.5;
+  let Total = subTotal + 2.5;
+
+  // let num = 0;
+  // selectMenu.forEach((meal)=>{
+  //   num += Number(meal.price);
+  // })
+
   return (
     <div className="App">
       {isLoading ? (
@@ -59,7 +85,30 @@ function App() {
                 <img src={data.restaurant.picture} alt="picture of breakfast" />
               </div>
             </div>
-            <Section data={data} />
+            <div className="section-panier">
+              <Section
+                counter={counter}
+                setCounter={setCounter}
+                data={data}
+                selectMenu={selectMenu}
+                setSelectMenu={setSelectMenu}
+                Total={Total}
+
+                // setTotal={setTotal}
+              />
+
+              <div className="panier">
+                <Basket
+                  counter={counter}
+                  setCounter={setCounter}
+                  selectMenu={selectMenu}
+                  setSelectMenu={setSelectMenu}
+                  Total={Total}
+                  livraison={livraison}
+                  subTotal={subTotal}
+                />
+              </div>
+            </div>
           </header>
         </div>
       )}

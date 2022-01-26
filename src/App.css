@@ -1,6 +1,7 @@
 @import "./Components/Header/Header.css";
 @import "./Components/Section/Section.css";
 @import "./Components/Loading/Loading.css";
+@import "./Components/Basket/Basket.css";
 
 body {
   /* background-color: rgb(155, 196, 194); */
@@ -48,6 +49,13 @@ body {
   font-size: 25px;
   line-height: 40px;
   color: rgb(114, 114, 114);
+}
+.section-panier {
+  /* background-color: lightgreen; */
+  display: flex;
+  padding-left: 12.5%;
+  padding-right: 12.5%;
+  /* justify-content: center; */
 }
 @media all and (max-width: 880px) {
   /* body {
@@ -98,5 +106,12 @@ body {
     line-height: 25px;
     color: rgb(114, 114, 114);
     /* background-color: violet; */
+  }
+  .section-panier {
+    /* background-color: lightgreen; */
+    display: inherit;
+    padding-left: 2px;
+    padding-right: 2px;
+    /* justify-content: center; */
   }
 }
