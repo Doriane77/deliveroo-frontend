@@ -37,7 +37,7 @@ function App() {
       fetchData();
     };
 
-    setTimeout(showSomething, 1000);
+    setTimeout(showSomething, 3000);
   }, []);
 
   // useEffect(() => {
