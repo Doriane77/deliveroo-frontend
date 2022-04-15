@@ -33,23 +33,11 @@ function App() {
   };
   useEffect(() => {
     const showSomething = () => {
-      // console.log("Ce message a été affiché après 3 secondes");
       fetchData();
     };
 
     setTimeout(showSomething, 3000);
   }, []);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const response = await axios.get("http://localhost:3200");
-  //     setdata(response.data);
-  //     console.log(response.data.restaurant);
-  //   };
-
-  //   fetchData();
-  //   setIsLoading(false);
-  // }, []);
 
   let subTotal = 0;
   selectMenu.forEach((meal) => {
@@ -57,11 +45,6 @@ function App() {
   });
   let livraison = 2.5;
   let Total = subTotal + 2.5;
-
-  // let num = 0;
-  // selectMenu.forEach((meal)=>{
-  //   num += Number(meal.price);
-  // })
 
   return (
     <div className="App">
@@ -93,8 +76,6 @@ function App() {
                 selectMenu={selectMenu}
                 setSelectMenu={setSelectMenu}
                 Total={Total}
-
-                // setTotal={setTotal}
               />
 
               <div className="panier">

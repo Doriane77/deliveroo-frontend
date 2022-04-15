@@ -1,14 +1,11 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import star from "./etoile.png";
 
 function Section({ data, selectMenu, setSelectMenu, counter, setCounter }) {
-  // console.log("SelectMenu : ", selectMenu);
   function addProduct(list) {
     const newtab = [...selectMenu];
 
     let index = newtab.findIndex((e) => e.id === list.id);
-    console.log(index);
     if (selectMenu.lenght === 0 || index === -1) {
       newtab.push({
         title: list.title,
