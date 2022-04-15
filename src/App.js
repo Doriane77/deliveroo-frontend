@@ -1,3 +1,4 @@
+require("dotenv").config();
 import "./App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -27,7 +28,7 @@ function App() {
   ]);
 
   const fetchData = async () => {
-    const response = await axios.get("http://localhost:3200/");
+    const response = await axios.get(process.env.PORT);
     setdata(response.data);
     setIsLoading(false);
   };
