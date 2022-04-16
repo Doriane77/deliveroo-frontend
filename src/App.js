@@ -28,7 +28,7 @@ function App() {
 
   const fetchData = async () => {
     const response = await axios.get(
-      process.env.PORT || "http://localhost:3200"
+      process.env.URL || "http://localhost:3200"
     );
     setdata(response.data);
     setIsLoading(false);
