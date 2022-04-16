@@ -1,4 +1,3 @@
-require("dotenv").config();
 import "./App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -28,7 +27,9 @@ function App() {
   ]);
 
   const fetchData = async () => {
-    const response = await axios.get(process.env.PORT);
+    const response = await axios.get(
+      process.env.PORT || "http://localhost:3200"
+    );
     setdata(response.data);
     setIsLoading(false);
   };
@@ -59,14 +60,14 @@ function App() {
             <Header />
             <div className="sousheader">
               <div className="sousimg-none">
-                <img src={data.restaurant.picture} alt="picture of breakfast" />
+                <img src={data.restaurant.picture} alt="breakfast" />
               </div>
               <div className="titleDesc">
                 <h1>{data.restaurant.name}</h1>
                 <p>{data.restaurant.description}</p>
               </div>
               <div className="sousimg">
-                <img src={data.restaurant.picture} alt="picture of breakfast" />
+                <img src={data.restaurant.picture} alt="breakfast" />
               </div>
             </div>
             <div className="section-panier">

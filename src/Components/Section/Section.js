@@ -27,6 +27,7 @@ function Section({ data, selectMenu, setSelectMenu, counter, setCounter }) {
       <div className="categories">
         {data.categories.map((elem, index) => {
           if (elem.meals.length === 0) {
+            return null;
           } else {
             return (
               <div key={index} className="box-categories">
